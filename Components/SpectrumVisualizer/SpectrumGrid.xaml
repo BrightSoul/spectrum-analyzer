@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="SpectrumAnalyzer.Components.SpectrumGrid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:components="clr-namespace:SpectrumAnalyzer.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Border Background="#000000" Padding="5 0 5 10">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+            <components:SpectrumHeader></components:SpectrumHeader>
+            <components:SpectrumColumn Frequency="20Hz" Grid.Column="1"></components:SpectrumColumn>
+            <components:SpectrumColumn Frequency="40Hz" Grid.Column="2"></components:SpectrumColumn>
+            <components:SpectrumColumn Frequency="60Hz" Grid.Column="3"></components:SpectrumColumn>
+            <components:SpectrumColumn Frequency="80Hz" Grid.Column="4"></components:SpectrumColumn>
+            <components:SpectrumColumn Frequency="100Hz" Grid.Column="5"></components:SpectrumColumn>
+            <components:SpectrumColumn Frequency="200Hz" Grid.Column="6"></components:SpectrumColumn>
+            <components:SpectrumColumn Frequency="500Hz" Grid.Column="7"></components:SpectrumColumn>
+            <components:SpectrumColumn Frequency="1kHz" Grid.Column="8"></components:SpectrumColumn>
+            <components:SpectrumColumn Frequency="2kHz" Grid.Column="9"></components:SpectrumColumn>
+            <components:SpectrumColumn Frequency="5kHz" Grid.Column="10"></components:SpectrumColumn>
+            <components:SpectrumColumn Frequency="10kHz" Grid.Column="11"></components:SpectrumColumn>
+            <components:SpectrumColumn Frequency="15kHz" Grid.Column="12"></components:SpectrumColumn>
+            <components:SpectrumColumn Frequency="20kHz" Grid.Column="13"></components:SpectrumColumn>
+        </Grid>
+    </Border>
+</UserControl>
