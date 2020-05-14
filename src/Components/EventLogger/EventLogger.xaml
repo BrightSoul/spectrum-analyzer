@@ -12,7 +12,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Name="LogLabel" Grid.Column="0" Padding="10 10 0 10" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="20" Background="#f5f5f5">Log eventi</TextBlock>
-        <ListView Grid.Row="2" AutomationProperties.Name="Eventi di superamento delle soglie verificatisi dall'ultimo avvio" ItemsSource="{Binding Path=Events}">
+        <ListView Grid.Row="2" AutomationProperties.Name="Eventi di superamento delle soglie verificatisi dall'ultimo avvio" ItemsSource="{Binding Path=Events}" BorderThickness="0">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Istante" DisplayMemberBinding="{Binding Path=Instant}"></GridViewColumn>

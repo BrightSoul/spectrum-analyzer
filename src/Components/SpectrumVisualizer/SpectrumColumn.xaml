@@ -10,8 +10,24 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Name="FrequencyLabel" Foreground="White" Grid.Row="0" HorizontalAlignment="Center" FontSize="18" Text="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=Frequency}"></TextBlock>
+        <TextBlock Name="FrequencyLabel" Foreground="White" Grid.Row="0" HorizontalAlignment="Center" FontSize="18" Text="{Binding .}"></TextBlock>
         <Rectangle Grid.Row="1" Fill="White" MinWidth="2" Margin="5 0 5 0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="100"></Rectangle>
-        <Slider HorizontalAlignment="Center" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Value}" Grid.Row="1" Orientation="Vertical" Minimum="-20" Maximum="20" Value="0" IsSnapToTickEnabled="True" TickFrequency="1" AutomationProperties.Name="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=Frequency, StringFormat='Soglia dei {0}'}" AutomationProperties.LabeledBy="{Binding ElementName=FrequencyLabel}" VerticalAlignment="Stretch"></Slider>
+        <Slider HorizontalAlignment="Center" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Value}" Grid.Row="1" Orientation="Vertical" Minimum="-20" Maximum="20" Value="0" IsSnapToTickEnabled="True" TickFrequency="1" AutomationProperties.Name="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=Frequency, StringFormat='Soglia dei {0}'}" AutomationProperties.LabeledBy="{Binding ElementName=FrequencyLabel}" VerticalAlignment="Stretch">
+            <Slider.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Value="True">
+                            <DataTrigger.Binding>
+                                <MultiBinding Converter="{StaticResource ObjectEqualityConverter}">
+                                    <Binding RelativeSource="{RelativeSource AncestorType=Window, Mode=FindAncestor}" Path="DataContext.SelectedFrequency" Mode="OneWay" />
+                                    <Binding Path="." Mode="OneWay"/>
+                                </MultiBinding>
+                            </DataTrigger.Binding>
+                            <Setter Property="FocusManager.FocusedElement" Value="{Binding RelativeSource={RelativeSource Self}}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Slider.Style>
+        </Slider>
     </Grid>
 </UserControl>

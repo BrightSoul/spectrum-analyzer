@@ -89,7 +89,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\IndexToOrdinalConverter.cs" />
+    <Compile Include="Converters\ObjectEqualityConverter.cs" />
+    <Compile Include="Helpers\RelayCommand.cs" />
+    <Compile Include="Models\Frequency.cs" />
+    <Compile Include="ViewModels\MainViewModel.Commands.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="Components\EventLogger\EventLogger.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\MainMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -123,6 +133,9 @@
     </Compile>
     <Compile Include="Components\EventLogger\EventLogger.xaml.cs">
       <DependentUpon>EventLogger.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\SpectrumVisualizer\SpectrumColumn.xaml.cs">
       <DependentUpon>SpectrumColumn.xaml</DependentUpon>
@@ -183,5 +196,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

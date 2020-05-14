@@ -15,14 +15,12 @@ using System.Windows.Shapes;
 
 namespace SpectrumAnalyzer.Components
 {
-
-
     /// <summary>
-    /// Logica di interazione per SpectrumColumn.xaml
+    /// Logica di interazione per MainMenu.xaml
     /// </summary>
-    public partial class SpectrumColumn : UserControl
+    public partial class MainMenu : Menu
     {
-        public SpectrumColumn()
+        public MainMenu()
         {
             InitializeComponent();
         }

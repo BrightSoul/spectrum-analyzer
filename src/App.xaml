@@ -1,9 +1,12 @@
 ﻿<Application x:Class="SpectrumAnalyzer.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:SpectrumAnalyzer"
+             xmlns:viewmodels="clr-namespace:SpectrumAnalyzer.ViewModels"
+             xmlns:converters="clr-namespace:SpectrumAnalyzer.Converters"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <viewmodels:MainViewModel x:Key="MainViewModel" />
+        <converters:ObjectEqualityConverter x:Key="ObjectEqualityConverter" />
+        <converters:IndexToOrdinalConverter x:Key="IndexToOrdinalConverter" />
     </Application.Resources>
 </Application>
