@@ -14,7 +14,31 @@
         </Binding>
     </Window.DataContext>
     <Window.InputBindings>
-        <KeyBinding Key="F1" Command="{Binding SelectFrequencyCommand}"></KeyBinding>
+        <!-- Maybe make this dynamic -->
+        <KeyBinding Key="F1" Command="{Binding SelectFrequencyCommand}" CommandParameter="0"></KeyBinding>
+        <KeyBinding Key="F2" Command="{Binding SelectFrequencyCommand}" CommandParameter="1"></KeyBinding>
+        <KeyBinding Key="F3" Command="{Binding SelectFrequencyCommand}" CommandParameter="2"></KeyBinding>
+        <KeyBinding Key="F4" Command="{Binding SelectFrequencyCommand}" CommandParameter="3"></KeyBinding>
+        <KeyBinding Key="F5" Command="{Binding SelectFrequencyCommand}" CommandParameter="4"></KeyBinding>
+        <KeyBinding Key="F6" Command="{Binding SelectFrequencyCommand}" CommandParameter="5"></KeyBinding>
+        <KeyBinding Key="F7" Command="{Binding SelectFrequencyCommand}" CommandParameter="6"></KeyBinding>
+        <KeyBinding Key="F8" Command="{Binding SelectFrequencyCommand}" CommandParameter="7"></KeyBinding>
+        <KeyBinding Key="F9" Command="{Binding SelectFrequencyCommand}" CommandParameter="8"></KeyBinding>
+        <KeyBinding Key="F10" Command="{Binding SelectFrequencyCommand}" CommandParameter="9"></KeyBinding>
+        <KeyBinding Key="F11" Command="{Binding SelectFrequencyCommand}" CommandParameter="10"></KeyBinding>
+        <KeyBinding Key="F12" Command="{Binding SelectFrequencyCommand}" CommandParameter="11"></KeyBinding>
+        <KeyBinding Key="F13" Command="{Binding SelectFrequencyCommand}" CommandParameter="12"></KeyBinding>
+        <KeyBinding Key="F14" Command="{Binding SelectFrequencyCommand}" CommandParameter="13"></KeyBinding>
+        <KeyBinding Key="F15" Command="{Binding SelectFrequencyCommand}" CommandParameter="14"></KeyBinding>
+        <KeyBinding Key="F16" Command="{Binding SelectFrequencyCommand}" CommandParameter="15"></KeyBinding>
+        <KeyBinding Key="F17" Command="{Binding SelectFrequencyCommand}" CommandParameter="16"></KeyBinding>
+        <KeyBinding Key="F18" Command="{Binding SelectFrequencyCommand}" CommandParameter="17"></KeyBinding>
+        <KeyBinding Key="F19" Command="{Binding SelectFrequencyCommand}" CommandParameter="18"></KeyBinding>
+        <KeyBinding Key="F20" Command="{Binding SelectFrequencyCommand}" CommandParameter="19"></KeyBinding>
+        <KeyBinding Key="F21" Command="{Binding SelectFrequencyCommand}" CommandParameter="20"></KeyBinding>
+        <KeyBinding Key="F22" Command="{Binding SelectFrequencyCommand}" CommandParameter="21"></KeyBinding>
+        <KeyBinding Key="F23" Command="{Binding SelectFrequencyCommand}" CommandParameter="22"></KeyBinding>
+        <KeyBinding Key="F24" Command="{Binding SelectFrequencyCommand}" CommandParameter="23"></KeyBinding>
     </Window.InputBindings>
     <DockPanel>
         <components:MainMenu DockPanel.Dock="Top" Background="White" BorderThickness="0 0 0 1" BorderBrush="#ccc"></components:MainMenu>

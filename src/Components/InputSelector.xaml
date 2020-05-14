@@ -12,11 +12,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock Name="InputLabel" Grid.Column="0" Padding="10 10 0 10" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20">Acquisizione</TextBlock>
-        <ComboBox Grid.Column="1" Margin="0 0 20 0" VerticalAlignment="Center" SelectedIndex="0" AutomationProperties.Name="Scegli la sorgente da acquisire"  AutomationProperties.LabeledBy="{Binding ElementName=InputLabel}">
-            <ComboBoxItem>Sorgente ASIO 1</ComboBoxItem>
-            <ComboBoxItem>Sorgente ASIO 2</ComboBoxItem>
-            <ComboBoxItem>Line-In</ComboBoxItem>
-            <ComboBoxItem>Microfono</ComboBoxItem>
+        <ComboBox Grid.Column="1" Margin="0 0 20 0" VerticalAlignment="Center" AutomationProperties.Name="Scegli la sorgente da acquisire" ItemsSource="{Binding InputOptions}" SelectedValue="{Binding SelectedInputOption, Mode=TwoWay}" DisplayMemberPath="OptionName" AutomationProperties.LabeledBy="{Binding ElementName=InputLabel}">
         </ComboBox>
         <Button Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" AutomationProperties.Name="Configura la sorgente selezionata" AutomationProperties.LabeledBy="{Binding ElementName=InputLabel}">Configura</Button>
     </Grid>

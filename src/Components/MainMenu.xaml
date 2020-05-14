@@ -7,7 +7,7 @@
              d:DesignHeight="50" d:DesignWidth="800">
     <MenuItem Header="_File">
         <MenuItem Header="_Log eventi">
-            <MenuItem Header="_Salva con nome..."></MenuItem>
+            <MenuItem Header="_Salva con nome..." InputGestureText="CTRL+S"></MenuItem>
             <MenuItem Header="_Reimposta" InputGestureText="CTRL+R"></MenuItem>
         </MenuItem>
         <Separator />
@@ -25,11 +25,11 @@
         </MenuItem>
     </MenuItem>
     <MenuItem Header="_Vai">
-        <MenuItem Header="_Log eventi" />
-        <MenuItem Header="_Frequenza" ItemsSource="{Binding Frequencies}" AlternationCount="4">
+        <MenuItem Header="_Log eventi" InputGestureText="CTRL+L" />
+        <MenuItem Header="_Frequenza" ItemsSource="{Binding Frequencies}" AlternationCount="{Binding Frequencies.Count}">
             <MenuItem.ItemTemplate>
                 <DataTemplate>
-                    <MenuItem InputGestureText="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=MenuItem}, Path=(ItemsControl.AlternationIndex), Converter={StaticResource IndexToOrdinalConverter}, StringFormat='F{0}'}" Header="A"></MenuItem>
+                    <MenuItem InputGestureText="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=MenuItem}, Path=(ItemsControl.AlternationIndex), Converter={StaticResource IndexToOrdinalConverter}, StringFormat='F{0}'}" Header="{Binding .}" Command="{Binding RelativeSource={RelativeSource AncestorType=Menu, Mode=FindAncestor}, Path=DataContext.SelectFrequencyCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=MenuItem}, Path=(ItemsControl.AlternationIndex)}"></MenuItem>
                 </DataTemplate>
             </MenuItem.ItemTemplate>
         </MenuItem>

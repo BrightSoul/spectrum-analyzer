@@ -15,12 +15,14 @@ using System.Windows.Shapes;
 
 namespace SpectrumAnalyzer.Components
 {
+
+
     /// <summary>
-    /// Logica di interazione per SpectrumHeader.xaml
+    /// Logica di interazione per SpectrumColumn.xaml
     /// </summary>
-    public partial class SpectrumHeader : UserControl
+    public partial class AmplitudeColumn : UserControl
     {
-        public SpectrumHeader()
+        public AmplitudeColumn()
         {
             InitializeComponent();
         }

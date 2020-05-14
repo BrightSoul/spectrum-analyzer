@@ -10,21 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SpectrumAnalyzer.Components
 {
-
-
     /// <summary>
-    /// Logica di interazione per SpectrumColumn.xaml
+    /// Logica di interazione per NotificationDialog.xaml
     /// </summary>
-    public partial class SpectrumColumn : UserControl
+    public partial class NotificationDialog : Window
     {
-        public SpectrumColumn()
+        public NotificationDialog(FrameworkElement element)
         {
             InitializeComponent();
+            this.AddVisualChild(element);
         }
     }
 }

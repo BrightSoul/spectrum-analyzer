@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:components="clr-namespace:SpectrumAnalyzer.Components"
              mc:Ignorable="d" 
-             d:DesignWidth="800">
+             d:DesignWidth="800" d:DesignHeight="900">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="170"></ColumnDefinition>
@@ -14,9 +14,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Name="VisualizationLabel" Grid.Column="0" Padding="10 10 0 10" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20">Visualizzazione</TextBlock>
         <Button Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" AutomationProperties.LabeledBy="{Binding ElementName=VisualizationLabel}">Configura</Button>
-        <components:SpectrumGrid Grid.ColumnSpan="2" AutomationProperties.Name="Griglia delle frequenze" IsTabStop="True" Grid.Column="0" Grid.RowSpan="2" Grid.Row="1"></components:SpectrumGrid>
+        <components:AmplitudeGrid FrequencyAmplitudes="{Binding FrequencyAmplitudes}" Grid.ColumnSpan="2" AutomationProperties.Name="Griglia delle frequenze" IsTabStop="True" Grid.Column="0" Grid.Row="1"></components:AmplitudeGrid>
+        <components:SpectrumTimeline FrequencyAmplitudes="{Binding FrequencyAmplitudes}"  Grid.Column="0" AutomationProperties.Name="Spettrogramma" Grid.ColumnSpan="2" Grid.Row="2"></components:SpectrumTimeline>
     </Grid>
 </UserControl>

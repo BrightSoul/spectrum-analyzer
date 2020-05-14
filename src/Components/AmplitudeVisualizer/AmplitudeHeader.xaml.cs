@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace SpectrumAnalyzer.Components
 {
     /// <summary>
-    /// Logica di interazione per SpectrumGrid.xaml
+    /// Logica di interazione per SpectrumHeader.xaml
     /// </summary>
-    public partial class SpectrumGrid : UserControl
+    public partial class AmplitudeHeader : UserControl
     {
-        public SpectrumGrid()
+        public AmplitudeHeader()
         {
             InitializeComponent();
         }

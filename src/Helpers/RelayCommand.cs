@@ -25,7 +25,13 @@ namespace SpectrumAnalyzer.Helpers
 
         public void Execute(object parameter)
         {
-            this.execute((TParameter)parameter);
+            if (parameter is TParameter)
+            {
+                this.execute((TParameter)parameter);
+            } else
+            {
+                this.execute((TParameter) Convert.ChangeType(parameter, typeof(TParameter)));
+            }
         }
 
         public void RaiseCanExecuteChanged()
