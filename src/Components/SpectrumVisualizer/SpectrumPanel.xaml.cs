@@ -1,9 +1,5 @@
-﻿using Nito.AsyncEx;
-using SpectrumAnalyzer.Models;
-using System;
-using System.Collections.Concurrent;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +16,11 @@ using System.Windows.Shapes;
 namespace SpectrumAnalyzer.Components
 {
     /// <summary>
-    /// Logica di interazione per SpectrumGrid.xaml
+    /// Logica di interazione per SpectrumPanel.xaml
     /// </summary>
-    public partial class AmplitudeGrid : UserControl
+    public partial class SpectrumPanel : UserControl
     {
-        public AmplitudeGrid()
+        public SpectrumPanel()
         {
             InitializeComponent();
         }

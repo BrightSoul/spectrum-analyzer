@@ -13,6 +13,7 @@ namespace SpectrumAnalyzer.ViewModels
     public partial class MainViewModel
     {
         public RelayCommand<int> SelectFrequencyCommand => new RelayCommand<int>(SelectFrequency);
+        public RelayCommand ResetEventLogCommand => new RelayCommand(ResetEventLog);
         public RelayCommand ExitCommand => new RelayCommand(Exit);
         public RelayCommand ShowConfigurationForSelectedInputOptionCommand => new RelayCommand(ShowConfigurationForSelectedInputOption);
 

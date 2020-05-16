@@ -22,12 +22,6 @@ namespace SpectrumAnalyzer.Components
     {
         public EventLogger()
         {
-            this.DataContext = new { Events = new[] {
-                new { Instant = "00:01:10", Frequency = "20Hz", Value = "20dB" },
-                new { Instant = "00:02:22", Frequency = "1kHz", Value = "18dB" },
-                new { Instant = "00:03:15", Frequency = "10kHz", Value = "19dB" },
-                }
-            };
             InitializeComponent();
         }
     }

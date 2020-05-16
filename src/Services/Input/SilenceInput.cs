@@ -21,11 +21,12 @@ namespace SpectrumAnalyzer.Services.Input
 {
     public class SilenceInput : IInput
     {
-        const int samplesBatchSize = 44000;
+        const int samplesBatchSize = 1024;
         public int Priority => 0;
 
-        public async IAsyncEnumerable<Sample[]> EnumerateSamplesAsync(string option, [EnumeratorCancellation] CancellationToken token = default)
+        public async IAsyncEnumerable<Sample[]> EnumerateSamplesAsync(InputOption option, [EnumeratorCancellation] CancellationToken token = default)
         {
+            option.SamplingFrequency = 44100;
             while (!token.IsCancellationRequested)
             {
                 var samples = Enumerable.Repeat(0f, samplesBatchSize).Select(sample => new Sample(new[] { sample })).ToArray();

@@ -12,7 +12,7 @@ namespace SpectrumAnalyzer.Models
         {
             Values = values;
         }
-        float[] Values { get; }
-        int Channels => Values.Length;
+        public float[] Values { get; }
+        public int Channels => Values.Length;
     }
 }

@@ -15,6 +15,7 @@
     </Window.DataContext>
     <Window.InputBindings>
         <!-- Maybe make this dynamic -->
+        <KeyBinding Key="R" Modifiers="Ctrl" Command="{Binding ResetEventLogCommand}"></KeyBinding>
         <KeyBinding Key="F1" Command="{Binding SelectFrequencyCommand}" CommandParameter="0"></KeyBinding>
         <KeyBinding Key="F2" Command="{Binding SelectFrequencyCommand}" CommandParameter="1"></KeyBinding>
         <KeyBinding Key="F3" Command="{Binding SelectFrequencyCommand}" CommandParameter="2"></KeyBinding>
@@ -46,7 +47,6 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="10"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -57,8 +57,8 @@
                 <Grid Grid.Row="0">
                     <components:InputSelector Background="#eee"></components:InputSelector>
                 </Grid>
-                <Rectangle Grid.Row="1" Height="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Fill="#cccccc"></Rectangle>
-                <components:VisualizationSelector Grid.Row="2"></components:VisualizationSelector>
+                <!--<Rectangle Grid.Row="1" Height="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Fill="#cccccc"></Rectangle>-->
+                <components:VisualizationSelector Grid.Row="1"></components:VisualizationSelector>
                 <Rectangle Grid.Column="1" Grid.RowSpan="3" Width="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Fill="#cccccc"></Rectangle>
                 <components:EventLogger VerticalAlignment="Stretch" Grid.Row="0" Grid.RowSpan="3" Grid.Column="2"></components:EventLogger>
             </Grid>

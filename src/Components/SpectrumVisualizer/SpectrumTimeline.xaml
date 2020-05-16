@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Red">
-        <TextBlock x:Name="Testo"></TextBlock>
+    <Grid Background="Black">
+        <Image x:Name="Spectrogram" Stretch="Fill"></Image>
     </Grid>
 </UserControl>

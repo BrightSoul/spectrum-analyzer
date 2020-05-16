@@ -5,12 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid AutomationProperties.Name="Scala dei valori dell'ampiezza" Margin="0 30 10 0">
+    <Grid AutomationProperties.Name="Scala dei valori dell'ampiezza" Margin="0 20 10 0">
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock TextAlignment="Right" VerticalAlignment="Top" Foreground="White">20dB</TextBlock>
-        <TextBlock TextAlignment="Right" VerticalAlignment="Center" Foreground="White">0dB</TextBlock>
-        <TextBlock TextAlignment="Right" VerticalAlignment="Bottom" Foreground="White">-20dB</TextBlock>
+        <TextBlock TextAlignment="Right" Grid.Row="0" Foreground="White">0dB</TextBlock>
+        <TextBlock TextAlignment="Right" Grid.Row="2" Foreground="White">-10dB</TextBlock>
+        <TextBlock TextAlignment="Right" Grid.Row="4" Foreground="White">-20dB</TextBlock>
+        <TextBlock TextAlignment="Right" Grid.Row="6" Foreground="White">-30dB</TextBlock>
     </Grid>
 </UserControl>

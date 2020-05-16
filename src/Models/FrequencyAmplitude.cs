@@ -11,10 +11,10 @@ namespace SpectrumAnalyzer.Models
         public FrequencyAmplitude(Frequency frequency, Amplitude amplitude)
         {
             Frequency = frequency;
-            Intensity = amplitude;
+            Amplitude = amplitude;
         }
 
         public Frequency Frequency { get; }
-        public Amplitude Intensity { get; }
+        public Amplitude Amplitude { get; }
     }
 }

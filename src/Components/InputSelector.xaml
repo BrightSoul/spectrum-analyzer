@@ -3,17 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              d:DesignWidth="800">
     <Grid Background="#f5f5f5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="170"></ColumnDefinition>
-            <ColumnDefinition Width="200"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock Name="InputLabel" Grid.Column="0" Padding="10 10 0 10" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20">Acquisizione</TextBlock>
-        <ComboBox Grid.Column="1" Margin="0 0 20 0" VerticalAlignment="Center" AutomationProperties.Name="Scegli la sorgente da acquisire" ItemsSource="{Binding InputOptions}" SelectedValue="{Binding SelectedInputOption, Mode=TwoWay}" DisplayMemberPath="OptionName" AutomationProperties.LabeledBy="{Binding ElementName=InputLabel}">
-        </ComboBox>
-        <Button Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" AutomationProperties.Name="Configura la sorgente selezionata" AutomationProperties.LabeledBy="{Binding ElementName=InputLabel}">Configura</Button>
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Grid.Column="1">
+            <TextBlock x:Name="SourceLabel" VerticalAlignment="Center" Margin="0 0 10 0">Sorgente</TextBlock>
+            <ComboBox Grid.Column="1" x:Name="SelectSource" Margin="0 0 10 0" VerticalAlignment="Center" AutomationProperties.Name="Scegli la sorgente da acquisire" ItemsSource="{Binding InputOptions}" SelectedValue="{Binding SelectedInputOption, Mode=TwoWay}" AutomationProperties.LabeledBy="{Binding ElementName=SourceLabel}"></ComboBox>
+            <Button Grid.Column="2" Padding="10 0" Background="Transparent" BorderThickness="0" fa:Awesome.Content="Cog" AutomationProperties.Name="{Binding ElementName=SelectSource, Path=SelectedValue, StringFormat='Configura la sorgente {0}'}" FontSize="24" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome"/>
+        </StackPanel>
+        
+        
     </Grid>
 </UserControl>

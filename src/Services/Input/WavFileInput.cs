@@ -16,15 +16,15 @@ namespace SpectrumAnalyzer.Services.Input
 {
     public class WavFileInput : IInput
     {
-        const int samplesBatchSize = 20000;
+        const int samplesBatchSize = 2205;
 
         public int Priority => 10;
 
-        public async IAsyncEnumerable<Sample[]> EnumerateSamplesAsync(string label, [EnumeratorCancellation] CancellationToken token = default)
+        public async IAsyncEnumerable<Sample[]> EnumerateSamplesAsync(InputOption option, [EnumeratorCancellation] CancellationToken token = default)
         {
             using var pcmStream = new WaveFileReader("G:\\test.wav");
             //using var pcmStream = WaveFormatConversionStream.CreatePcmStream(audio);
-
+            option.SamplingFrequency = pcmStream.WaveFormat.SampleRate;
             var bytesCount = samplesBatchSize * pcmStream.BlockAlign;
             var buffer = new byte[bytesCount];
             //if pcmStream.BitsPerSample == 16 && pcmStream.Channels == 1
@@ -50,9 +50,9 @@ namespace SpectrumAnalyzer.Services.Input
 
         public InputOption[] GetInputOptions()
         {
-            return new InputOption[]
+            return new InputOption[0]
             {
-                new InputOption("File wav", this)
+                //new InputOption("File wav", this)
             };
         }
 
@@ -62,7 +62,9 @@ namespace SpectrumAnalyzer.Services.Input
         }
 
         private float[] Get16BitMono(byte[] buffer, int offset) {
-            return new float[] { BitConverter.ToInt16(buffer, offset) / (float) 32768 };
+            //return new float[] { BitConverter.ToInt16(buffer, offset) / (float) 32768 };
+            short v = BitConverter.ToInt16(buffer, offset);
+            return new float[] { (float) v };
         }
     }
 }

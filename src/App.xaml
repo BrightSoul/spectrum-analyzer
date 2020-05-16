@@ -7,6 +7,7 @@
     <Application.Resources>
         <viewmodels:MainViewModel x:Key="MainViewModel" />
         <converters:ObjectEqualityConverter x:Key="ObjectEqualityConverter" />
+        <converters:ValueToPercentageConverter x:Key="ValueToPercentageConverter" />
         <converters:IndexToOrdinalConverter x:Key="IndexToOrdinalConverter" />
     </Application.Resources>
 </Application>

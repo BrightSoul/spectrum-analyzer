@@ -3,16 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:components="clr-namespace:SpectrumAnalyzer.Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="80">
-    <Grid>
+    <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Name="FrequencyLabel" Foreground="White" Grid.Row="0" HorizontalAlignment="Center" FontSize="18" Text="{Binding Path=.}"></TextBlock>
-        <Rectangle Grid.Row="1" Fill="White" MinWidth="2" Margin="5 0 5 0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="100"></Rectangle>
-        <Slider HorizontalAlignment="Center" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Value}" Grid.Row="1" Orientation="Vertical" Minimum="-20" Maximum="20" Value="0" IsSnapToTickEnabled="True" TickFrequency="1" AutomationProperties.Name="{Binding Path=.}" AutomationProperties.LabeledBy="{Binding ElementName=FrequencyLabel}" VerticalAlignment="Stretch">
+        <Viewbox Stretch="Fill" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinWidth="2" Margin="5 0 5 0">
+            <components:AmplitudeBar Height="100" Width="1" Value="{Binding Path=CurrentAmplitude, Converter={StaticResource ValueToPercentageConverter}, ConverterParameter=-30}"></components:AmplitudeBar>
+        </Viewbox>
+        <Slider HorizontalAlignment="Center" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Value}" Value="{Binding Path=Threshold}" Grid.Row="1" Orientation="Vertical" Minimum="-30" Maximum="0" IsSnapToTickEnabled="True" TickFrequency="1" AutomationProperties.Name="{Binding Path=.}" AutomationProperties.LabeledBy="{Binding ElementName=FrequencyLabel}" VerticalAlignment="Stretch">
             <Slider.Style>
                 <Style>
                     <Style.Triggers>
@@ -29,5 +32,6 @@
                 </Style>
             </Slider.Style>
         </Slider>
+
     </Grid>
 </UserControl>

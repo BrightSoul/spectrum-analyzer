@@ -16,6 +16,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>true</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -29,12 +30,11 @@
     <InstallUrl>https://spettro.azurewebsites.net/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -73,6 +73,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -91,29 +92,50 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Components\AmplitudeVisualizer\AmplitudeBar.xaml.cs">
+      <DependentUpon>AmplitudeBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\Dialogs\NotificationDialog.xaml.cs">
       <DependentUpon>NotificationDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\SpectrumTimeline\SpectrumTimeline.xaml.cs">
+    <Compile Include="Components\SpectrumVisualizer\SpectrumHeader.xaml.cs">
+      <DependentUpon>SpectrumHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\SpectrumVisualizer\SpectrumPanel.xaml.cs">
+      <DependentUpon>SpectrumPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\SpectrumVisualizer\SpectrumTimeline.xaml.cs">
       <DependentUpon>SpectrumTimeline.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\IndexToOrdinalConverter.cs" />
     <Compile Include="Converters\ObjectEqualityConverter.cs" />
+    <Compile Include="Converters\ValueToPercentageConverter.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Exceptions\ConfigurationNeededException.cs" />
     <Compile Include="Models\Frequency.cs" />
     <Compile Include="Models\FrequencyAmplitude.cs" />
     <Compile Include="Models\Amplitude.cs" />
     <Compile Include="Models\InputOption.cs" />
     <Compile Include="Models\Sample.cs" />
+    <Compile Include="Services\Resample\MaxResampler.cs" />
+    <Compile Include="Services\Resample\IAggregator.cs" />
+    <Compile Include="Services\Input\WasapiInput.cs" />
     <Compile Include="Services\Input\SilenceInput.cs" />
     <Compile Include="Services\Input\AsioInput.cs" />
+    <Compile Include="Services\Input\DeviceInput.cs" />
     <Compile Include="Services\Input\WavFileInput.cs" />
     <Compile Include="Services\Input\IInput.cs" />
-    <Compile Include="Services\Transform\FastFurierTransform.cs" />
+    <Compile Include="Services\Transform\FastFourierTransformer.cs" />
     <Compile Include="Services\Transform\ITransformer.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\FrequencyViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.Commands.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Page Include="Components\AmplitudeVisualizer\AmplitudeBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Components\Dialogs\NotificationDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -138,7 +160,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\SpectrumTimeline\SpectrumTimeline.xaml">
+    <Page Include="Components\SpectrumVisualizer\SpectrumHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\SpectrumVisualizer\SpectrumPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\SpectrumVisualizer\SpectrumTimeline.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -212,9 +242,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.1">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 e x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.7.1 %28x86 e x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -224,6 +254,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Colorspace">
+      <Version>1.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="FontAwesome.WPF">
+      <Version>4.7.0.9</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces">
       <Version>1.1.1</Version>
     </PackageReference>

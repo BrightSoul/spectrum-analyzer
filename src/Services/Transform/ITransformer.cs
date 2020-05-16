@@ -11,6 +11,6 @@ namespace SpectrumAnalyzer.Services.Transform
 {
     public interface ITransformer
     {
-        IAsyncEnumerable<FrequencyAmplitude[]> EnumerateFrequencyAmplitudesAsync(string optionName, IInput input, CancellationToken token);
+        IAsyncEnumerable<FrequencyAmplitude[]> EnumerateFrequencyAmplitudesAsync(InputOption option, CancellationToken token);
     }
 }

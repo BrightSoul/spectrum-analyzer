@@ -3,6 +3,7 @@ using SpectrumAnalyzer.Components;
 using SpectrumAnalyzer.Helpers;
 using SpectrumAnalyzer.Models;
 using SpectrumAnalyzer.Models.Exceptions;
+using SpectrumAnalyzer.Services.Aggregate;
 using SpectrumAnalyzer.Services.Input;
 using SpectrumAnalyzer.Services.Transform;
 using System;
@@ -24,11 +25,12 @@ using System.Windows.Media;
 
 namespace SpectrumAnalyzer.ViewModels
 {
-    public partial class MainViewModel : INotifyPropertyChanged
+    public partial class MainViewModel : BaseViewModel
     {
 
         private readonly ICollection<IInput> inputs;
         private readonly ITransformer transformer;
+        private readonly IResampler resampler;
 
         public MainViewModel()
         {
@@ -49,26 +51,34 @@ namespace SpectrumAnalyzer.ViewModels
                 .Cast<ITransformer>()
                 .First();
 
+            resampler = Assembly
+                .GetExecutingAssembly()
+                .GetTypes()
+                .Where(t => typeof(IResampler).IsAssignableFrom(t) && t.IsClass)
+                .Select(t => Activator.CreateInstance(t))
+                .Cast<IResampler>()
+                .First();
+
             InputOptions = new ObservableCollection<InputOption>(
                        inputs.SelectMany(input => input.GetInputOptions())
                 );
 
-            Frequencies = new ObservableCollection<Frequency>(
-                new []
-                {
-                    new Frequency(20),
-                    new Frequency(40),
-                    new Frequency(60),
-                    new Frequency(100)
-                });
+            EventLog = new ObservableCollection<Event>();
+
+            Frequencies = new ObservableCollection<FrequencyViewModel>(
+                new [] { 32, 64, 125, 250, 500, 1000, 2000, 4000, 8000, 16000 }
+                .Select(value => new FrequencyViewModel(new Frequency(value))));
 
             SelectedInputOption = InputOptions[0];
-        }
-        public ObservableCollection<Frequency> Frequencies { get; }
-        public ObservableCollection<InputOption> InputOptions { get; }
 
-        private Frequency selectedFrequency;
-        public Frequency SelectedFrequency
+            EventLogStart = DateTime.Now;
+        }
+        public ObservableCollection<FrequencyViewModel> Frequencies { get; }
+        public ObservableCollection<InputOption> InputOptions { get; }
+        public ObservableCollection<Event> EventLog { get; }
+
+        private FrequencyViewModel selectedFrequency;
+        public FrequencyViewModel SelectedFrequency
         {
             get => selectedFrequency;
             private set => Set(ref selectedFrequency, value);
@@ -90,6 +100,11 @@ namespace SpectrumAnalyzer.ViewModels
         {
             get => frequencyAmplitudes;
             set => Set(ref frequencyAmplitudes, value);
+        }
+
+        public DateTime EventLogStart
+        {
+            get; set;
         }
 
         private CancellationTokenSource cancellationTokenSource = null;
@@ -118,16 +133,65 @@ namespace SpectrumAnalyzer.ViewModels
         private async Task RenderSamples(CancellationToken token)
         {
             var option = selectedInputOption;
-            await foreach (var frequencyAmplitues in transformer.EnumerateFrequencyAmplitudesAsync(option.OptionName, option.Owner, token))
+            await foreach (var frequencyAmplitues in transformer.EnumerateFrequencyAmplitudesAsync(option, token))
             {
                 FrequencyAmplitudes = frequencyAmplitues;
-                CheckFrequencyAmplitudes(frequencyAmplitudes);
+                ResampleAndUpdateFrequencyAmplitudes(frequencyAmplitudes);
+                CheckFrequencyAmplitudes();
             }
         }
 
-        private void CheckFrequencyAmplitudes(FrequencyAmplitude[] frequencyAmplitudes)
+        private void ResampleAndUpdateFrequencyAmplitudes(FrequencyAmplitude[] frequencyAmplitudes)
         {
+            var desiredFrequencyAmplitudes = Frequencies.Select(f => f.Frequency).ToArray();
+            var outputFrequencyAmplitudes = resampler.ResampleFrequencyAmplitudes(frequencyAmplitudes, desiredFrequencyAmplitudes).ToArray();
+            for (var i = 0; i < outputFrequencyAmplitudes.Length; i++)
+            {
+                if (Frequencies[i].Frequency.Value != outputFrequencyAmplitudes[i].Frequency.Value)
+                {
+                    throw new InvalidOperationException("Frequencies values don't match");
+                }
+                var magnitude = outputFrequencyAmplitudes[i].Amplitude.Values[0];
+                //TODO: calcola correttamente i decibel
+                var amplitude = ((magnitude / 100) * 30) - 30;
+
+                //var amplitude = Math.Min(0, Math.Max(-30, 20f * (float)Math.Log10(magnitude)));
+                Frequencies[i].CurrentAmplitude = amplitude;
+            }
+        }
+
+        private void ResetEventLog()
+        {
+            EventLogStart = DateTime.Now;
+            EventLog.Clear();
+            foreach(var frequency in Frequencies)
+            {
+                frequency.LastNotified = DateTime.MinValue;
+            }
+        }
+
+        private void CheckFrequencyAmplitudes()
+        {
+            Console.WriteLine(Frequencies[0].Threshold);
             //TODO: verifica se superano la soglia
+            for (var i = 0; i < Frequencies.Count; i++) {
+                var amplitude = Frequencies[i].CurrentAmplitude;
+                if (amplitude > Frequencies[i].Threshold)
+                {
+                    if (DateTime.Now.Subtract(Frequencies[i].LastNotified).Seconds > 5)
+                    {
+                        Frequencies[i].LastNotified = DateTime.Now;
+                        var logEvent = new Event
+                        {
+                            Instant = DateTime.Now.Subtract(EventLogStart).ToString("hh':'mm':'ss"),
+                            Frequency = Frequencies[i].ToString(),
+                            Value = $"{amplitude:0.0}db"
+                        };
+                        EventLog.Add(logEvent);
+                        SystemSounds.Asterisk.Play();
+                    }
+                }
+            }
         }
 
         private void SelectFrequency(int index)
@@ -166,20 +230,5 @@ namespace SpectrumAnalyzer.ViewModels
             }
             cancellationTokenSource = new CancellationTokenSource();
         }
-
-
-        #region INotifyPropertyChanged implementation and helpers
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void Set<T>(ref T backingField, T value, [CallerMemberName] string propertyName = null)
-        {
-            if (EqualityComparer<T>.Default.Equals(backingField, value))
-            {
-                return;
-            }
-            backingField = value;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
     }
 }
