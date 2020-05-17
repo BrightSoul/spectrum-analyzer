@@ -13,9 +13,9 @@
         </Grid.RowDefinitions>
         <TextBlock Name="FrequencyLabel" Foreground="White" Grid.Row="0" HorizontalAlignment="Center" FontSize="18" Text="{Binding Path=.}"></TextBlock>
         <Viewbox Stretch="Fill" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinWidth="2" Margin="5 0 5 0">
-            <components:AmplitudeBar Height="100" Width="1" Value="{Binding Path=CurrentAmplitude, Converter={StaticResource ValueToPercentageConverter}, ConverterParameter=-30}"></components:AmplitudeBar>
+            <components:AmplitudeBar Height="100" Width="1" Value="{Binding Path=CurrentAmplitude, Converter={StaticResource ValueToPercentageConverter}, ConverterParameter={x:Reference Name=FrequencySlider}}"></components:AmplitudeBar>
         </Viewbox>
-        <Slider HorizontalAlignment="Center" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Value}" Value="{Binding Path=Threshold}" Grid.Row="1" Orientation="Vertical" Minimum="-30" Maximum="0" IsSnapToTickEnabled="True" TickFrequency="1" AutomationProperties.Name="{Binding Path=.}" AutomationProperties.LabeledBy="{Binding ElementName=FrequencyLabel}" VerticalAlignment="Stretch">
+        <Slider Name="FrequencySlider" HorizontalAlignment="Center" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Value}" Value="{Binding Path=Threshold}" Grid.Row="1" Orientation="Vertical" Minimum="-30" Maximum="0" IsSnapToTickEnabled="True" TickFrequency="1" AutomationProperties.Name="{Binding Path=.}" AutomationProperties.LabeledBy="{Binding ElementName=FrequencyLabel}" VerticalAlignment="Stretch">
             <Slider.Style>
                 <Style>
                     <Style.Triggers>

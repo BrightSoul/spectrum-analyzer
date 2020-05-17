@@ -69,6 +69,8 @@ namespace SpectrumAnalyzer.Components
             var column = 0;
             while (await renderingQueue.OutputAvailableAsync())
             {
+                try
+                {
                     var frequencyAmplitudes = await renderingQueue.TakeAsync();
                     var actualFrequencyAmplitudes = frequencyAmplitudes.Where(f => f.Frequency.Value <= 15000).Select(a => a.Amplitude.Values[0]).ToArray();
                     actualFrequencyAmplitudes = Resample(actualFrequencyAmplitudes, bitmap.Height);
@@ -94,6 +96,10 @@ namespace SpectrumAnalyzer.Components
                     {
                         Spectrogram.Source = Convert(ms);
                     });
+                } catch (Exception exc)
+                {
+
+                }
             }
         }
 
@@ -116,7 +122,9 @@ namespace SpectrumAnalyzer.Components
 
         private static System.Drawing.Color GetColor(float amplitude)
         {
-            var factor = Math.Min(1.0, amplitude / 100);
+            var lowerLimit = -30f;
+            var upperLimit = 0f;
+            var factor = (Math.Max(lowerLimit, Math.Min(upperLimit, amplitude)) - lowerLimit) / (upperLimit - lowerLimit);
             //TODO: non cablare qui questi valori
             //var factor = Math.Min(1.0, (amplitude + 30) / 30.0);
             var hue = (factor * 0.375) + 0.7917;
@@ -125,9 +133,9 @@ namespace SpectrumAnalyzer.Components
 
             var luminance = factor;
 
-            ColorHSL color = new ColorHSL(hue, 1.0, luminance);
-            ColorRGB color2 = new ColorRGB(color);
-            return System.Drawing.Color.FromArgb(System.Convert.ToInt32(color2.R * 255), System.Convert.ToInt32(color2.G * 255), System.Convert.ToInt32(color2.B * 255));
+                ColorHSL color = new ColorHSL(hue, 1.0, luminance);
+                ColorRGB color2 = new ColorRGB(color);
+                return System.Drawing.Color.FromArgb(System.Convert.ToInt32(color2.R * 255), System.Convert.ToInt32(color2.G * 255), System.Convert.ToInt32(color2.B * 255));
 
         }
 

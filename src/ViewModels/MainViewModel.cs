@@ -151,9 +151,7 @@ namespace SpectrumAnalyzer.ViewModels
                 {
                     throw new InvalidOperationException("Frequencies values don't match");
                 }
-                var magnitude = outputFrequencyAmplitudes[i].Amplitude.Values[0];
-                //TODO: calcola correttamente i decibel
-                var amplitude = ((magnitude / 100) * 30) - 30;
+                var amplitude = outputFrequencyAmplitudes[i].Amplitude.Values[0];
 
                 //var amplitude = Math.Min(0, Math.Max(-30, 20f * (float)Math.Log10(magnitude)));
                 Frequencies[i].CurrentAmplitude = amplitude;
@@ -172,7 +170,6 @@ namespace SpectrumAnalyzer.ViewModels
 
         private void CheckFrequencyAmplitudes()
         {
-            Console.WriteLine(Frequencies[0].Threshold);
             //TODO: verifica se superano la soglia
             for (var i = 0; i < Frequencies.Count; i++) {
                 var amplitude = Frequencies[i].CurrentAmplitude;

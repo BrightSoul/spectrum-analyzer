@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace SpectrumAnalyzer.Converters
@@ -12,9 +13,9 @@ namespace SpectrumAnalyzer.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            int limit = System.Convert.ToInt32(parameter);
-            int minimum = Math.Min(limit, 0);
-            int maximum = Math.Max(limit, 0);
+            var slider = parameter as Slider;
+            double minimum = slider.Minimum;
+            double maximum = slider.Maximum;
 
             double currentValue = Math.Min(maximum, Math.Max(minimum, System.Convert.ToDouble(value)));
             double percentage = ((currentValue - minimum) / (double)(maximum - minimum)) * 100;

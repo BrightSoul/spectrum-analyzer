@@ -12,6 +12,6 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <TextBlock TextAlignment="Right" Grid.Row="0" Foreground="White">15kHz</TextBlock>
-            <TextBlock TextAlignment="Right" Grid.Row="2" Foreground="White">0Hz</TextBlock>
+            <TextBlock TextAlignment="Right" Grid.Row="2" Foreground="White">1kHz</TextBlock>
     </Grid>
 </UserControl>

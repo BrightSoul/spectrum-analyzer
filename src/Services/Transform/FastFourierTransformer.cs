@@ -74,7 +74,12 @@ namespace SpectrumAnalyzer.Services.Transform
         private float GetAmplitude(Complex value)
         {
             var magnitude = GetMagnitude(value);
-            return magnitude;
+            var amplitude = 20f * (float)Math.Log10(magnitude);
+            if (float.IsNaN(amplitude))
+            {
+                amplitude = -100;
+            }
+            return amplitude;
             /*var amplitude = 20f * (float) Math.Log10(magnitude);
             //TODO: Calcola correttamente l'ampiezza
             return Math.Max(-30, Math.Min(0, amplitude));*/
@@ -84,21 +89,22 @@ namespace SpectrumAnalyzer.Services.Transform
         {
             float c = Math.Abs(value.X);
             float d = Math.Abs(value.Y);
-
+            float result;
             if (c > d)
             {
                 float r = d / c;
-                return (float) (c * Math.Sqrt(1.0 + r * r));
+                result = (float) (c * Math.Sqrt(1.0 + r * r));
             }
             else if (d == 0.0)
             {
-                return c;  // c is either 0.0 or NaN
+                result = c;  // c is either 0.0 or NaN
             }
             else
             {
                 float r = c / d;
-                return (float) (d * Math.Sqrt(1.0 + r * r));
+                result = (float) (d * Math.Sqrt(1.0 + r * r));
             }
+            return result / 100f;
         }
     }
 }
