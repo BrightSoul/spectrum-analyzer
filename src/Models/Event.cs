@@ -4,12 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpectrumAnalyzer.Models
+namespace Spettro.Models
 {
     public class Event
     {
-        public string Instant { get; set; }
+        public TimeSpan Instant { get; set; }
         public string Frequency { get; set; }
         public string Value { get; set; }
+        public override string ToString()
+        {
+            return $"{Instant.Minutes} minuti {Instant.Seconds} secondi {Frequency} {Value}";
+        }
     }
 }

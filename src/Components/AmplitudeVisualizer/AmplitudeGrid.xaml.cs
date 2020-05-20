@@ -1,5 +1,5 @@
 ﻿using Nito.AsyncEx;
-using SpectrumAnalyzer.Models;
+using Spettro.Models;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SpectrumAnalyzer.Components
+namespace Spettro.Components
 {
     /// <summary>
     /// Logica di interazione per SpectrumGrid.xaml

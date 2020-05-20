@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpectrumAnalyzer.Models
+namespace Spettro.Models
 {
     public struct Sample
     {

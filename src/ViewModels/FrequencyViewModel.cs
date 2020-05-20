@@ -1,11 +1,11 @@
-﻿using SpectrumAnalyzer.Models;
+﻿using Spettro.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpectrumAnalyzer.ViewModels
+namespace Spettro.ViewModels
 {
 
     public class FrequencyViewModel : BaseViewModel

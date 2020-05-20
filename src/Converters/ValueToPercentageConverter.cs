@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace SpectrumAnalyzer.Converters
+namespace Spettro.Converters
 {
     public class ValueToPercentageConverter : IValueConverter
     {

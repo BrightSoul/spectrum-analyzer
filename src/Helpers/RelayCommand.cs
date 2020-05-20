@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace SpectrumAnalyzer.Helpers
+namespace Spettro.Helpers
 {
     public class RelayCommand<TParameter> : ICommand
     {

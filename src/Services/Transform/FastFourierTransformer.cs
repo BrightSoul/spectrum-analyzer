@@ -1,6 +1,6 @@
 ﻿using NAudio.Dsp;
-using SpectrumAnalyzer.Models;
-using SpectrumAnalyzer.Services.Input;
+using Spettro.Models;
+using Spettro.Services.Input;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 
-namespace SpectrumAnalyzer.Services.Transform
+namespace Spettro.Services.Transform
 {
     public class FastFourierTransformer : ITransformer
     {

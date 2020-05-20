@@ -1,4 +1,4 @@
-﻿using SpectrumAnalyzer.Services.Input;
+﻿using Spettro.Services.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SpectrumAnalyzer
+namespace Spettro
 {
     /// <summary>
     /// Logica di interazione per MainWindow.xaml

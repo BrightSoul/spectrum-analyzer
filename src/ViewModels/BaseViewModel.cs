@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpectrumAnalyzer.ViewModels
+namespace Spettro.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

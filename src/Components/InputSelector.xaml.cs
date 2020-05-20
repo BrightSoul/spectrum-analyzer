@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SpectrumAnalyzer.Components
+namespace Spettro.Components
 {
     /// <summary>
     /// Logica di interazione per AcquisitionSelector.xaml

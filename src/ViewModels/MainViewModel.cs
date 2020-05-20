@@ -1,11 +1,11 @@
 ﻿using NAudio.SoundFont;
-using SpectrumAnalyzer.Components;
-using SpectrumAnalyzer.Helpers;
-using SpectrumAnalyzer.Models;
-using SpectrumAnalyzer.Models.Exceptions;
-using SpectrumAnalyzer.Services.Aggregate;
-using SpectrumAnalyzer.Services.Input;
-using SpectrumAnalyzer.Services.Transform;
+using Spettro.Components;
+using Spettro.Helpers;
+using Spettro.Models;
+using Spettro.Models.Exceptions;
+using Spettro.Services.Aggregate;
+using Spettro.Services.Input;
+using Spettro.Services.Transform;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,7 +23,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace SpectrumAnalyzer.ViewModels
+namespace Spettro.ViewModels
 {
     public partial class MainViewModel : BaseViewModel
     {
@@ -180,12 +180,12 @@ namespace SpectrumAnalyzer.ViewModels
                         Frequencies[i].LastNotified = DateTime.Now;
                         var logEvent = new Event
                         {
-                            Instant = DateTime.Now.Subtract(EventLogStart).ToString("hh':'mm':'ss"),
+                            Instant = DateTime.Now.Subtract(EventLogStart),
                             Frequency = Frequencies[i].ToString(),
                             Value = $"{amplitude:0.0}db"
                         };
                         EventLog.Add(logEvent);
-                        SystemSounds.Asterisk.Play();
+                        //SystemSounds.Asterisk.Play();
                     }
                 }
             }

@@ -1,6 +1,6 @@
 ﻿using NAudio.Wave;
 using Nito.AsyncEx;
-using SpectrumAnalyzer.Models;
+using Spettro.Models;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
 
-namespace SpectrumAnalyzer.Services.Input
+namespace Spettro.Services.Input
 {
     public class DeviceInput : IInput
     {

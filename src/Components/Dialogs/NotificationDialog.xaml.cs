@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace SpectrumAnalyzer.Components
+namespace Spettro.Components
 {
     /// <summary>
     /// Logica di interazione per NotificationDialog.xaml

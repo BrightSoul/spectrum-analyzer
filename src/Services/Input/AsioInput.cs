@@ -2,8 +2,8 @@
 using NAudio.Wave;
 using NAudio.Wave.Asio;
 using Nito.AsyncEx;
-using SpectrumAnalyzer.Models;
-using SpectrumAnalyzer.Models.Exceptions;
+using Spettro.Models;
+using Spettro.Models.Exceptions;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -19,7 +19,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
 
-namespace SpectrumAnalyzer.Services.Input
+namespace Spettro.Services.Input
 {
     public class AsioInput : IInput
     {

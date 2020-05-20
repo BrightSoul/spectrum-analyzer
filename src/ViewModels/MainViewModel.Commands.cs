@@ -1,5 +1,5 @@
-﻿using SpectrumAnalyzer.Helpers;
-using SpectrumAnalyzer.Models;
+﻿using Spettro.Helpers;
+using Spettro.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace SpectrumAnalyzer.ViewModels
+namespace Spettro.ViewModels
 {
     public partial class MainViewModel
     {

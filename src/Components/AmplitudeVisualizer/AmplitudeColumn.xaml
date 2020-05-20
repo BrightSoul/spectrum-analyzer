@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="SpectrumAnalyzer.Components.AmplitudeColumn"
+﻿<UserControl x:Class="Spettro.Components.AmplitudeColumn"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:components="clr-namespace:SpectrumAnalyzer.Components"
+             xmlns:components="clr-namespace:Spettro.Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="80">
     <Grid Background="Black">
@@ -15,7 +15,8 @@
         <Viewbox Stretch="Fill" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinWidth="2" Margin="5 0 5 0">
             <components:AmplitudeBar Height="100" Width="1" Value="{Binding Path=CurrentAmplitude, Converter={StaticResource ValueToPercentageConverter}, ConverterParameter={x:Reference Name=FrequencySlider}}"></components:AmplitudeBar>
         </Viewbox>
-        <Slider Name="FrequencySlider" HorizontalAlignment="Center" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Value}" Value="{Binding Path=Threshold}" Grid.Row="1" Orientation="Vertical" Minimum="-30" Maximum="0" IsSnapToTickEnabled="True" TickFrequency="1" AutomationProperties.Name="{Binding Path=.}" AutomationProperties.LabeledBy="{Binding ElementName=FrequencyLabel}" VerticalAlignment="Stretch">
+        <TextBlock Foreground="Transparent" Name="CurrentValue" AutomationProperties.LiveSetting="Assertive" Text="{Binding ElementName=FrequencySlider, Path=Value}"></TextBlock>
+        <Slider AutomationProperties.AutomationId="" AutomationProperties.HelpText="" AutomationProperties.IsRequiredForForm="False" AutomationProperties.ItemStatus="" AutomationProperties.ItemType="" Name="FrequencySlider" AutomationProperties.IsColumnHeader="True" HorizontalAlignment="Center" AutomationProperties.LiveSetting="Off" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Value}" Value="{Binding Path=Threshold}" Grid.Row="1" Orientation="Vertical" Minimum="-30" Maximum="0" IsSnapToTickEnabled="True" TickFrequency="1" AutomationProperties.Name="{Binding Path=.}" AutomationProperties.LabeledBy="{Binding ElementName=FrequencyLabel}" VerticalAlignment="Stretch">
             <Slider.Style>
                 <Style>
                     <Style.Triggers>

@@ -1,12 +1,12 @@
-﻿using SpectrumAnalyzer.Models;
-using SpectrumAnalyzer.ViewModels;
+﻿using Spettro.Models;
+using Spettro.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpectrumAnalyzer.Services.Aggregate
+namespace Spettro.Services.Aggregate
 {
     public interface IResampler
     {

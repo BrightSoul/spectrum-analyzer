@@ -1,12 +1,12 @@
-﻿using SpectrumAnalyzer.Models;
-using SpectrumAnalyzer.Services.Aggregate;
+﻿using Spettro.Models;
+using Spettro.Services.Aggregate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpectrumAnalyzer.Services.Resample
+namespace Spettro.Services.Resample
 {
     public class MaxResampler : IResampler
     {

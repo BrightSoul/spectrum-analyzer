@@ -1,4 +1,4 @@
-﻿using SpectrumAnalyzer.Models;
+﻿using Spettro.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace SpectrumAnalyzer.Services.Input
+namespace Spettro.Services.Input
 {
     public interface IInput
     {
